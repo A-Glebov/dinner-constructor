@@ -1,7 +1,6 @@
 package ru.practicum.dinner;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
