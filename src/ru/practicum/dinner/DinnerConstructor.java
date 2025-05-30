@@ -7,9 +7,10 @@ import java.util.Random;
 public class DinnerConstructor {
 
     HashMap<String, ArrayList<String>> listOfDishesByCategory = new HashMap<>(); // хэш-мап для хранения списков блюд по категориям
+    Random random = new Random();
 
-
-    void addDish(String type, String name) {
+    void addDish(String type, String name) { // Добавление блюда в список блюд по категориям. В качестве аргументов принимает тип блюда и наименование блюда
+        // При замене блока if - else на switch возникает предупреждение (Selector type of 'boolean' is not supported at language level '24) по рекомендации яндекс используется SDK 24-corretto
         if (!chekType(type)) { //  если категория отсутствует добавляем
             ArrayList<String> listOfDishes = new ArrayList<>();
             listOfDishes.add(name);
@@ -25,14 +26,13 @@ public class DinnerConstructor {
     }
 
 
-    boolean chekType(String type) {
-        return listOfDishesByCategory.containsKey(type); //проверка наличия категории
+    boolean chekType(String type) { //проверка наличия категории
+        return listOfDishesByCategory.containsKey(type);
     }
 
 
-    ArrayList<ArrayList<String>> generateCombo(int numberOfCombos, ArrayList<String> listTypeForCombo) {
+    ArrayList<ArrayList<String>> generateCombo(int numberOfCombos, ArrayList<String> listTypeForCombo) { // генерирует количество комбинаций(numberOfCombos) наименований блюд по списку типов блюд (listTypeForCombo)
         ArrayList<ArrayList<String>> listCombo = new ArrayList<>(); //список ля хранения различных комбинаций блюд
-        Random random = new Random();
 
         for (int i = 0; i < numberOfCombos; i++) {
             ArrayList<String> combo = new ArrayList<>(); //список для записи одной комбинации
@@ -47,11 +47,11 @@ public class DinnerConstructor {
             listCombo.add(combo); //добавляем список для записи одной комбинации в список ля хранения различных комбинаций блюд
         }
 
-        return listCombo;
+        return listCombo; // список возможных комбинаций из блюд этих типов (listTypeForCombo)
     }
 
-    void printOptionsCombo(ArrayList<ArrayList<String>> listCombo) {
-        for (int i = 0; i < listCombo.size(); i++) {
+    void printOptionsCombo(ArrayList<ArrayList<String>> listCombo) { // Печать вариантов комбинаций блюд. В качестве параметра
+        for (int i = 0; i < listCombo.size(); i++) {                   // список типов(категорий) блюд введенных пользователем
             System.out.println("Комбо " + (i + 1));
             System.out.println(listCombo.get(i));
         }
